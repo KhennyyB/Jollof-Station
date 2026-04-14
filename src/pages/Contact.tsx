@@ -146,13 +146,16 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2 font-sans">Subject</label>
-                    <select value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans">
-                      <option>Order Enquiry</option>
-                      <option>Feedback</option>
-                      <option>Catering</option>
-                      <option>Partnership</option>
-                      <option>Other</option>
-                    </select>
+                    <div className="relative">
+                      <select title="Subject" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="w-full appearance-none cursor-pointer px-4 py-3 pr-10 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans">
+                        <option>Order Enquiry</option>
+                        <option>Feedback</option>
+                        <option>Catering</option>
+                        <option>Partnership</option>
+                        <option>Other</option>
+                      </select>
+                      <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </div>
                   </div>
                 </div>
                 <div>

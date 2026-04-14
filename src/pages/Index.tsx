@@ -82,7 +82,7 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Carousel */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -102,7 +102,7 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display text-primary-foreground mb-4 tracking-tight">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-display text-primary-foreground mb-4 tracking-tight">
               Jollof Station
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/80 font-light mb-10 font-sans">
@@ -117,7 +117,7 @@ const Index = () => {
           >
             <button
               type="button"
-              className="inline-flex items-center justify-center gap-2 text-base px-8 py-6 rounded-md border border-white/60 bg-transparent text-white font-medium hover:bg-white/20 hover:border-white transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 h-11 text-base px-8 py-6 rounded-md border border-white/60 bg-transparent text-white font-medium hover:bg-white/20 hover:border-white transition-all duration-200"
               onClick={() => document.getElementById("how-to-order")?.scrollIntoView({ behavior: "smooth" })}
             >
               How to Order
