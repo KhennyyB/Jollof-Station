@@ -353,7 +353,7 @@ const MenuPage = () => {
           <h2 className="text-3xl md:text-5xl font-display text-primary-foreground mb-3">Ready to Order?</h2>
           <p className="text-primary-foreground/70 mb-8 text-lg font-sans">Place your order via Chowdeck, WhatsApp, or give us a call</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="gap-2 border-primary-foreground/30 text-black hover:bg-primary-foreground/10">
+            <Button asChild size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/40 transition-all duration-200">
               <a href={CHOWDECK_URL} target="_blank" rel="noopener noreferrer"><ChowdeckIcon size={18} /> Via Chowdeck</a>
             </Button>
             <Button asChild size="lg" className="bg-[#25D366] text-white hover:bg-[#1da851] gap-2">

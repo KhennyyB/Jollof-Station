@@ -59,7 +59,7 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-display text-primary-foreground mb-3">Ready to Taste the Story?</h2>
           <p className="text-primary-foreground/70 mb-8 text-lg font-sans">Order now and experience authentic Nigerian Jollof</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button asChild size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/40 transition-all duration-200">
               <a href={CHOWDECK_URL} target="_blank" rel="noopener noreferrer"><ChowdeckIcon size={18} /> Via Chowdeck</a>
             </Button>
             <Button asChild size="lg" className="bg-[#25D366] text-white hover:bg-[#1da851] gap-2">

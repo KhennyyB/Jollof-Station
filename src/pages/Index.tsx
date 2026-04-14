@@ -118,12 +118,12 @@ const Index = () => {
             <Button
               size="lg"
               variant="outline"
-              className="gap-2 text-base px-8 py-6 border-primary-foreground/30 text-black hover:bg-primary-foreground/10"
+              className="gap-2 text-base px-8 py-6 border-white/60 text-white hover:bg-white/20 hover:border-white transition-all duration-200"
               onClick={() => document.getElementById("how-to-order")?.scrollIntoView({ behavior: "smooth" })}
             >
               How to Order
             </Button>
-            <Button asChild size="lg" className="gap-2 text-base px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button asChild size="lg" className="gap-2 text-base px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/40 transition-all duration-200">
               <a href="/menu">View Menu</a>
             </Button>
           </motion.div>
@@ -251,7 +251,7 @@ const Index = () => {
             <h2 className="text-4xl md:text-6xl font-display text-primary-foreground mb-6">Craving Jollof?</h2>
             <p className="text-primary-foreground/80 text-lg mb-8 font-sans">Order now and taste the magic</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="gap-2 text-base px-8 bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button asChild size="lg" className="gap-2 text-base px-8 bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/40 transition-all duration-200">
                 <a href={CHOWDECK_URL} target="_blank" rel="noopener noreferrer"><ChowdeckIcon size={18} /> Via Chowdeck</a>
               </Button>
               <Button asChild size="lg" className="bg-[#25D366] text-white hover:bg-[#1da851] gap-2 text-base px-8">

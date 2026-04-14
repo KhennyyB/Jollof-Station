@@ -48,7 +48,7 @@ const CookieConsent = () => {
               <input type="checkbox" checked={marketing} onChange={() => setMarketing(!marketing)} className="w-5 h-5 accent-primary" />
             </label>
           </div>
-          <Button onClick={() => saveConsent(JSON.stringify({ essential: true, analytics, marketing }))} className="w-full">
+          <Button onClick={() => saveConsent(JSON.stringify({ essential: true, analytics, marketing }))} className="w-full hover:bg-primary/80 hover:shadow-md hover:shadow-primary/30 transition-all duration-200">
             Save Preferences
           </Button>
         </div>
@@ -59,8 +59,8 @@ const CookieConsent = () => {
             <Link to="/cookie-policy" className="text-primary underline">Cookie Policy</Link>.
           </p>
           <div className="flex flex-wrap gap-2 shrink-0">
-            <Button size="sm" onClick={() => saveConsent("accepted")}>Accept All</Button>
-            <Button size="sm" variant="outline" onClick={() => setShowPrefs(true)}>Manage Preferences</Button>
+            <Button size="sm" onClick={() => saveConsent("accepted")} className="hover:bg-primary/80 hover:shadow-md hover:shadow-primary/30 transition-all duration-200">Accept All</Button>
+            <Button size="sm" variant="outline" onClick={() => setShowPrefs(true)} className="border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200">Manage Preferences</Button>
             <button onClick={() => saveConsent("declined")} className="text-sm text-muted-foreground underline px-2">Decline</button>
           </div>
         </div>

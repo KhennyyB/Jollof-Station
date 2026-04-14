@@ -160,7 +160,7 @@ const Contact = () => {
                   <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={5} placeholder="Tell us what's on your mind..." className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none font-sans" maxLength={1000} />
                   {errors.message && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.message}</p>}
                 </div>
-                <Button type="submit" size="lg" className="w-full gap-2 rounded-xl font-sans">
+                <Button type="submit" size="lg" className="w-full gap-2 rounded-xl font-sans hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/40 transition-all duration-200">
                   Send Message <ArrowRight size={16} />
                 </Button>
               </form>
