@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Flame, Truck, Award } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { WhatsAppIcon, ChowdeckIcon } from "@/components/icons";
 import jollofFish from "@/assets/jollof-fish.jpg";
 import jollofTurkey from "@/assets/jollof-turkey.jpg";
@@ -53,6 +53,7 @@ const fadeUp = {
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     heroSlides.forEach((src) => {
@@ -78,6 +79,14 @@ const Index = () => {
     }, 6000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.load();
+    v.play().catch(() => {});
+  }, [currentVideo]);
 
   return (
     <Layout>
@@ -274,26 +283,18 @@ const Index = () => {
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentVideo}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.8 }}
-                className="aspect-video"
-              >
-                <video
-                  key={magicVideos[currentVideo]}
-                  src={magicVideos[currentVideo]}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            </AnimatePresence>
+            <div className="aspect-video">
+              <video
+                ref={videoRef}
+                src={magicVideos[currentVideo]}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="flex justify-center gap-2 py-4 bg-foreground/[0.03]">
               {magicVideos.map((_, i) => (
                 <button
