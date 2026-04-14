@@ -20,7 +20,7 @@ const WHATSAPP_URL = "https://wa.me/2349029757023";
 const heroSlides = [jollofFish, jollofTurkey, jollofBeef];
 
 const menuItems = [
-  { name: "Jollof Rice & Fish", desc: "Smoky party jollof with perfectly seasoned fish.", img: jollofFish },
+  { name: "Jollof Rice & Chicken", desc: "Smoky party jollof with perfectly grilled chicken.", img: jollofFish },
   { name: "Jollof & Grilled Turkey", desc: "Jollof rice paired with succulent grilled turkey.", img: jollofTurkey },
   { name: "Fluffy Pancakes", desc: "Golden pancakes with fresh fruits and syrup.", img: breakfast },
   { name: "French Toast & Waffles", desc: "Classic French toast with crispy Belgian waffles.", img: breakfast2 },
@@ -82,7 +82,7 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Carousel */}
-      <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -316,7 +316,7 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-muted-foreground italic leading-relaxed font-sans mb-4">
               "At the end of the day, I just want the food to be good. Every time you order."
             </p>
-            <p className="text-primary font-semibold font-sans">— Chef Aisha Murphy</p>
+            <p className="text-primary font-semibold font-sans">— Chef Coco</p>
           </motion.div>
         </div>
       </section>
