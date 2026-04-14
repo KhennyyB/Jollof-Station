@@ -115,14 +115,13 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Button
-              size="lg"
-              variant="outline"
-              className="gap-2 text-base px-8 py-6 border-white/60 text-white hover:bg-white/20 hover:border-white transition-all duration-200"
+            <button
+              type="button"
+              className="inline-flex items-center justify-center gap-2 text-base px-8 py-6 rounded-md border border-white/60 bg-transparent text-white font-medium hover:bg-white/20 hover:border-white transition-all duration-200"
               onClick={() => document.getElementById("how-to-order")?.scrollIntoView({ behavior: "smooth" })}
             >
               How to Order
-            </Button>
+            </button>
             <Button asChild size="lg" className="gap-2 text-base px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/40 transition-all duration-200">
               <a href="/menu">View Menu</a>
             </Button>
