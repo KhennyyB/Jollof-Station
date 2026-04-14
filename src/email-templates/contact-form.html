@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Contact Form Submission – Jollof Station</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background-color: #f5f0eb; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1a1a1a; }
+      .wrapper { max-width: 620px; margin: 40px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+
+      /* Header */
+      .header { background: linear-gradient(135deg, #ff5500 0%, #cc3300 100%); padding: 36px 40px; text-align: center; }
+      .logo-wrap { display: inline-block; background: #ffffff; border-radius: 50%; width: 72px; height: 72px; line-height: 72px; margin-bottom: 16px; overflow: hidden; }
+      .logo-wrap img { width: 72px; height: 72px; object-fit: cover; border-radius: 50%; display: block; }
+      .header h1 { color: #ffffff; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+      .header p { color: rgba(255,255,255,0.80); font-size: 13px; }
+
+      /* Body */
+      .body { padding: 36px 40px; }
+      .notice { background: #fff7f3; border-left: 4px solid #ff5500; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 28px; font-size: 14px; color: #cc3300; font-weight: 600; }
+      .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #999; margin-bottom: 16px; }
+      .field { margin-bottom: 20px; }
+      .field-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 6px; }
+      .field-value { font-size: 15px; color: #1a1a1a; font-weight: 500; word-break: break-word; }
+      .field-value a { color: #ff5500; text-decoration: none; }
+      .divider { height: 1px; background: #f0ebe6; margin: 24px 0; }
+      .message-box { background: #fafaf9; border: 1px solid #ede8e3; border-radius: 8px; padding: 18px 20px; font-size: 15px; line-height: 1.7; color: #333; white-space: pre-wrap; word-break: break-word; }
+      .badge { display: inline-block; background: #fff0ea; color: #ff5500; border: 1px solid #ffd0b8; border-radius: 20px; font-size: 12px; font-weight: 600; padding: 4px 12px; }
+
+      /* CTA */
+      .cta-wrap { text-align: center; margin: 32px 0 8px; }
+      .cta-btn { display: inline-block; background: #ff5500; color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 700; padding: 12px 28px; border-radius: 8px; letter-spacing: 0.3px; }
+
+      /* Footer */
+      .footer { background: #1c1c1e; padding: 28px 40px; text-align: center; }
+      .footer p { color: rgba(255,255,255,0.50); font-size: 12px; line-height: 1.8; }
+      .footer a { color: rgba(255,255,255,0.70); text-decoration: none; }
+      .footer .brand { color: #ff5500; font-weight: 700; }
+
+      @media (max-width: 640px) {
+        .wrapper { margin: 0; border-radius: 0; }
+        .header, .body, .footer { padding-left: 24px; padding-right: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <!-- Header -->
+      <div class="header">
+        <div class="logo-wrap">
+          <!--
+            Replace the src below with your deployed logo URL, e.g.:
+            https://yourdomain.com/logo-icon.png
+            EmailJS variables cannot be used for image src — use a hard-coded absolute URL.
+          -->
+          <img src="https://yourdomain.com/logo-icon.png" alt="Jollof Station Logo" />
+        </div>
+        <h1>Jollof Station</h1>
+        <p>New message from your contact form</p>
+      </div>
+
+      <!-- Body -->
+      <div class="body">
+
+        <div class="notice">
+          You have a new contact form submission!
+        </div>
+
+        <!-- Sender info -->
+        <div class="section-title">Sender Details</div>
+
+        <div class="field">
+          <div class="field-label">Full Name</div>
+          <div class="field-value">{{from_name}}</div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Email Address</div>
+          <div class="field-value"><a href="mailto:{{from_email}}">{{from_email}}</a></div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Phone Number</div>
+          <div class="field-value">{{phone}}</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Subject -->
+        <div class="field">
+          <div class="field-label">Subject</div>
+          <div class="field-value"><span class="badge">{{subject}}</span></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Message -->
+        <div class="section-title">Message</div>
+        <div class="message-box">{{message}}</div>
+
+        <!-- Reply CTA -->
+        <div class="cta-wrap">
+          <a href="mailto:{{from_email}}" class="cta-btn">Reply to {{from_name}}</a>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>
+          This email was sent from the contact form on<br />
+          <a href="https://jollofstation.com" class="brand">jollofstation.com</a>
+        </p>
+        <p style="margin-top:8px;">
+          <a href="mailto:support@jollofstation.com">support@jollofstation.com</a>
+        </p>
+      </div>
+
+    </div>
+  </body>
+</html>

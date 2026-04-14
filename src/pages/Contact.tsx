@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, Clock, Send, ArrowRight } from "lucide-react";
+import { Phone, Mail, Clock, Send, ArrowRight, CheckCircle, RotateCcw } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons";
-import { toast } from "sonner";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 import contactHeroBg from "@/assets/contact-hero-bg.jpg";
 
 const WHATSAPP_URL = "https://wa.me/2349029757023";
+const SUPPORT_EMAIL = "support@jollofstation.com";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -19,6 +19,7 @@ const fadeUp = {
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "Order Enquiry", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -34,8 +35,20 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    toast.success("Message sent! We'll get back to you shortly.");
+
+    const subject = encodeURIComponent(`[Contact Form] ${form.subject} — ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || "Not provided"}\nSubject: ${form.subject}\n\nMessage:\n${form.message}`
+    );
+
+    window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+    setSubmitted(true);
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
     setForm({ name: "", email: "", phone: "", subject: "Order Enquiry", message: "" });
+    setErrors({});
   };
 
   return (
@@ -113,96 +126,166 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            <motion.div className="lg:col-span-3" {...fadeUp} transition={{ duration: 0.5 }}>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Send className="text-primary" size={18} />
-                </div>
-                <div>
-                  <h2 className="font-sans font-bold text-xl">Send Us a Message</h2>
-                  <p className="text-sm text-muted-foreground font-sans">We'll get back to you within 24 hours</p>
-                </div>
-              </div>
+          <AnimatePresence mode="wait">
+            {submitted ? (
+              /* ── Thank-you state ── */
+              <motion.div
+                key="thankyou"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="max-w-lg mx-auto text-center py-8"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
+                  className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6"
+                >
+                  <CheckCircle className="text-primary" size={40} strokeWidth={1.5} />
+                </motion.div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium mb-2 font-sans">Full Name *</label>
-                    <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans" maxLength={100} />
-                    {errors.name && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.name}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2 font-sans">Email Address *</label>
-                    <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans" maxLength={255} />
-                    {errors.email && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.email}</p>}
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium mb-2 font-sans">Phone Number <span className="text-muted-foreground">(optional)</span></label>
-                    <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+234 800 000 0000" className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans" />
-                    {errors.phone && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.phone}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2 font-sans">Subject</label>
-                    <div className="relative">
-                      <select title="Subject" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="w-full appearance-none cursor-pointer px-4 py-3 pr-10 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans">
-                        <option>Order Enquiry</option>
-                        <option>Feedback</option>
-                        <option>Catering</option>
-                        <option>Partnership</option>
-                        <option>Other</option>
-                      </select>
-                      <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2 font-sans">Message *</label>
-                  <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={5} placeholder="Tell us what's on your mind..." className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none font-sans" maxLength={1000} />
-                  {errors.message && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.message}</p>}
-                </div>
-                <Button type="submit" size="lg" className="w-full gap-2 rounded-xl font-sans hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/40 transition-all duration-200">
-                  Send Message <ArrowRight size={16} />
-                </Button>
-              </form>
-            </motion.div>
+                <h2 className="font-display text-3xl md:text-4xl mb-3">Thank You, {form.name.split(" ")[0]}!</h2>
+                <p className="text-muted-foreground font-sans mb-2">
+                  Your message has been sent to our team.
+                </p>
+                <p className="text-muted-foreground font-sans text-sm mb-8">
+                  We typically reply within <span className="text-foreground font-semibold">24 hours</span>. For a faster response, reach us on WhatsApp.
+                </p>
 
-            <motion.div className="lg:col-span-2 space-y-8" {...fadeUp} transition={{ duration: 0.5, delay: 0.2 }}>
-              <div className="bg-accent/10 rounded-2xl p-8 text-center border border-accent/20">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                  <WhatsAppIcon size={28} />
-                </div>
-                <h3 className="font-sans font-bold text-lg mb-2">Prefer WhatsApp?</h3>
-                <p className="text-sm text-muted-foreground mb-5 font-sans">Get a quicker response by chatting with us directly</p>
-                <Button asChild size="lg" className="w-full gap-2 rounded-xl bg-[#25D366] text-white hover:bg-[#1da851]">
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                    <WhatsAppIcon size={18} /> Chat on WhatsApp
-                  </a>
-                </Button>
-              </div>
-
-              <div>
-                <h3 className="font-sans font-bold text-base mb-4">Quick Response Times</h3>
-                <div className="space-y-3">
+                <div className="bg-muted/40 rounded-2xl p-5 text-left mb-8 space-y-2 border border-border">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 font-sans">Message summary</p>
                   {[
-                    { label: "WhatsApp", time: "Under 5 minutes", dot: "bg-primary" },
-                    { label: "Phone", time: "Instant during hours", dot: "bg-secondary" },
-                    { label: "Email / Form", time: "Within 24 hours", dot: "bg-muted-foreground" },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-center justify-between text-sm font-sans">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-2 h-2 rounded-full ${item.dot}`} />
-                        <span className="text-muted-foreground">{item.label}</span>
-                      </div>
-                      <span className="font-medium">{item.time}</span>
+                    { label: "Name", val: form.name },
+                    { label: "Email", val: form.email },
+                    { label: "Subject", val: form.subject },
+                    ...(form.phone ? [{ label: "Phone", val: form.phone }] : []),
+                  ].map(({ label, val }) => (
+                    <div key={label} className="flex gap-3 text-sm font-sans">
+                      <span className="text-muted-foreground w-16 shrink-0">{label}</span>
+                      <span className="text-foreground font-medium truncate">{val}</span>
                     </div>
                   ))}
                 </div>
-              </div>
-            </motion.div>
-          </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button asChild size="lg" className="gap-2 bg-[#25D366] text-white hover:bg-[#1da851] rounded-xl transition-all duration-200">
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                      <WhatsAppIcon size={18} /> Chat on WhatsApp
+                    </a>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="gap-2 rounded-xl border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200"
+                    onClick={handleReset}
+                  >
+                    <RotateCcw size={16} /> Send Another
+                  </Button>
+                </div>
+              </motion.div>
+            ) : (
+              /* ── Form + sidebar ── */
+              <motion.div
+                key="form"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 lg:grid-cols-5 gap-12"
+              >
+                <motion.div className="lg:col-span-3" {...fadeUp} transition={{ duration: 0.5 }}>
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Send className="text-primary" size={18} />
+                    </div>
+                    <div>
+                      <h2 className="font-sans font-bold text-xl">Send Us a Message</h2>
+                      <p className="text-sm text-muted-foreground font-sans">We'll get back to you within 24 hours</p>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 font-sans">Full Name *</label>
+                        <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans" maxLength={100} />
+                        {errors.name && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.name}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 font-sans">Email Address *</label>
+                        <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@example.com" className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans" maxLength={255} />
+                        {errors.email && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.email}</p>}
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 font-sans">Phone Number <span className="text-muted-foreground">(optional)</span></label>
+                        <input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+234 800 000 0000" className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans" />
+                        {errors.phone && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.phone}</p>}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 font-sans">Subject</label>
+                        <div className="relative">
+                          <select title="Subject" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="w-full appearance-none cursor-pointer px-4 py-3 pr-10 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all font-sans">
+                            <option>Order Enquiry</option>
+                            <option>Feedback</option>
+                            <option>Catering</option>
+                            <option>Partnership</option>
+                            <option>Other</option>
+                          </select>
+                          <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 font-sans">Message *</label>
+                      <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={5} placeholder="Tell us what's on your mind..." className="w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none font-sans" maxLength={1000} />
+                      {errors.message && <p className="text-destructive text-xs mt-1.5 font-sans">{errors.message}</p>}
+                    </div>
+                    <Button type="submit" size="lg" className="w-full gap-2 rounded-xl font-sans hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/40 transition-all duration-200">
+                      Send Message <ArrowRight size={16} />
+                    </Button>
+                  </form>
+                </motion.div>
+
+                <motion.div className="lg:col-span-2 space-y-8" {...fadeUp} transition={{ duration: 0.5, delay: 0.2 }}>
+                  <div className="bg-accent/10 rounded-2xl p-8 text-center border border-accent/20">
+                    <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                      <WhatsAppIcon size={28} />
+                    </div>
+                    <h3 className="font-sans font-bold text-lg mb-2">Prefer WhatsApp?</h3>
+                    <p className="text-sm text-muted-foreground mb-5 font-sans">Get a quicker response by chatting with us directly</p>
+                    <Button asChild size="lg" className="w-full gap-2 rounded-xl bg-[#25D366] text-white hover:bg-[#1da851]">
+                      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                        <WhatsAppIcon size={18} /> Chat on WhatsApp
+                      </a>
+                    </Button>
+                  </div>
+
+                  <div>
+                    <h3 className="font-sans font-bold text-base mb-4">Quick Response Times</h3>
+                    <div className="space-y-3">
+                      {[
+                        { label: "WhatsApp", time: "Under 5 minutes", dot: "bg-primary" },
+                        { label: "Phone", time: "Instant during hours", dot: "bg-secondary" },
+                        { label: "Email / Form", time: "Within 24 hours", dot: "bg-muted-foreground" },
+                      ].map((item) => (
+                        <div key={item.label} className="flex items-center justify-between text-sm font-sans">
+                          <div className="flex items-center gap-2">
+                            <div className={`w-2 h-2 rounded-full ${item.dot}`} />
+                            <span className="text-muted-foreground">{item.label}</span>
+                          </div>
+                          <span className="font-medium">{item.time}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
     </Layout>
