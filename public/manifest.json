@@ -1,0 +1,16 @@
+{
+  "name": "JollofStation",
+  "short_name": "JollofStation",
+  "description": "Where Every Grain Tells a Story — Authentic Nigerian Jollof rice",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#C0392B",
+  "background_color": "#FDF6EC",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}
