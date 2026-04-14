@@ -117,8 +117,8 @@ const Index = () => {
           >
             <Button
               size="lg"
-              variant="secondary"
-              className="gap-2 text-base px-8 py-6"
+              variant="outline"
+              className="gap-2 text-base px-8 py-6 border-primary-foreground/30 text-black hover:bg-primary-foreground/10"
               onClick={() => document.getElementById("how-to-order")?.scrollIntoView({ behavior: "smooth" })}
             >
               How to Order
