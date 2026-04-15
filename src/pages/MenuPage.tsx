@@ -32,8 +32,8 @@ const singlePlates = [
   { name: "Maxi Meaty Jollof 2.0", desc: "Smokey Jollof with beef cuts in it, two pieces of chicken cut and plantain.", price: "₦11,500" },
   { name: "Mini Meaty with Fish", desc: "Smokey Jollof with beef cuts in it, one piece of fish and plantain.", price: "₦8,000" },
   { name: "Maxi Meaty with Fish", desc: "Smokey Jollof with beef cuts in it, two pieces of fish and plantain.", price: "₦11,000" },
-  { name: "Mini Meaty with Goat Meat", desc: "Smokey Jollof with beef cuts in it, two pieces of Turkey and plantain.", price: "₦7,500" },
-  { name: "Maxi Meaty with Goat Meat", desc: "Smokey Jollof, one piece of turkey and plantain.", price: "₦11,000" },
+  { name: "Mini Meaty with Goat Meat", desc: "Smokey Jollof with beef cuts in it, two pieces of peppered goat meat and plantain.", price: "₦7,500" },
+  { name: "Maxi Meaty with Goat Meat", desc: "Smokey Jollofwith beef cuts in it, two pieces of peppered goat meat and plantain.", price: "₦11,000" },
   { name: "Turkey Penne Pasta", desc: "Penne pasta in spicy turkey sauce.", price: "₦11,500" },
   { name: "Chicken Alfredo Pasta", desc: "Penne pasta in creamy chicken and basil sauce.", price: "₦14,500" },
   { name: "Executive Pack", desc: "Meaty jollof, chicken fried rice, turkey or chicken and fish, plantain, moin-moin or coleslaw.", price: "₦15,000" },
@@ -102,9 +102,9 @@ const breakfastMenu = {
 
 const afterParty = {
   rice: [
-    { name: "Meaty Jollof", price: "₦4,500" },
-    { name: "Asun Jollof", price: "₦5,000" },
-    { name: "Chicken and Beef Fried Rice", price: "₦5,000" },
+    { name: "Meaty Jollof", desc: "Small bites and protein infused", price: "₦4,500" },
+    { name: "Asun Jollof", desc: "Small bites and protein infused", price: "₦5,000" },
+    { name: "Chicken and Beef Fried Rice", desc: "Small bites and protein infused", price: "₦5,000" },
   ],
   pastas: [
     { name: "Tomato Turkey Pasta", price: "₦5,000" },

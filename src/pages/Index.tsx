@@ -20,12 +20,12 @@ const WHATSAPP_URL = "https://wa.me/2349029757023";
 const heroSlides = [jollofFish, jollofTurkey, jollofBeef];
 
 const menuItems = [
-  { name: "Jollof Rice & Chicken", desc: "Smoky party jollof with perfectly grilled chicken.", img: jollofFish },
+  { name: "Jollof Rice & Chicken", desc: "Smokey party jollof with perfectly grilled chicken.", img: jollofFish },
   { name: "Jollof & Grilled Turkey", desc: "Jollof rice paired with succulent grilled turkey.", img: jollofTurkey },
   { name: "Fluffy Pancakes", desc: "Golden pancakes with fresh fruits and syrup.", img: breakfast },
   { name: "French Toast & Waffles", desc: "Classic French toast with crispy Belgian waffles.", img: breakfast2 },
   { name: "Pasta & Peppered Meat", desc: "Penne pasta with spicy peppered goat meat.", img: pasta },
-  { name: "Spaghetti Bolognese", desc: "Spaghetti tossed with rich pepper sauce and chicken.", img: spag },
+  { name: "Turkey Spaghetti", desc: "Spaghetti tossed with rich pepper sauce and turkey.", img: spag },
 ];
 
 const magicVideos = [
