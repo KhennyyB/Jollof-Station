@@ -61,7 +61,6 @@ const Contact = () => {
                 icon: Clock,
                 label: "Opening Hours",
                 value: "Mon–Sat: 10 AM – 9 PM",
-                sub: "Sun: 12 PM – 7 PM",
               },
             ].map((item, i) => (
               <motion.div

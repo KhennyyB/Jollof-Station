@@ -21,6 +21,7 @@ export default defineConfig(() => ({
       jpg: { quality: 80 },
       jpeg: { quality: 80 },
       png: { quality: 85 },
+      svg: false,
     }),
   ],
   resolve: {
