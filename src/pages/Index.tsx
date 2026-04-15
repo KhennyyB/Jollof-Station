@@ -1,9 +1,8 @@
-import { lazy, Suspense } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Flame, Truck, Award } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { WhatsAppIcon, ChowdeckIcon } from "@/components/icons";
 import { useSEO } from "@/hooks/useSEO";
 import JsonLd from "@/components/JsonLd";
@@ -80,7 +79,7 @@ const Index = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentVideo((prev) => {
-        let next;
+        let next: number;
         do { next = Math.floor(Math.random() * magicVideos.length); } while (next === prev && magicVideos.length > 1);
         return next;
       });
@@ -110,7 +109,7 @@ const Index = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
-            <img src={heroSlides[currentSlide]} alt="" className="w-full h-full object-cover" aria-hidden="true" loading="eager" decoding="async" fetchPriority="high" />
+            <img src={heroSlides[currentSlide]} alt="" className="w-full h-full object-cover" aria-hidden="true" loading="eager" decoding="async" width="1920" height="1080" />
             <div className="absolute inset-0 bg-foreground/60" />
           </motion.div>
         </AnimatePresence>
@@ -151,7 +150,12 @@ const Index = () => {
             <button
               key={i}
               onClick={() => setCurrentSlide(i)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${i === currentSlide ? "bg-primary w-8" : "bg-primary-foreground/40"}`}
+              className="w-3 h-3 rounded-full bg-primary"
+              style={{
+                transform: `scaleX(${i === currentSlide ? 2.67 : 1})`,
+                opacity: i === currentSlide ? 1 : 0.4,
+                transition: "transform 300ms ease, opacity 300ms ease",
+              }}
               aria-label={`Slide ${i + 1}`}
             />
           ))}
@@ -212,6 +216,8 @@ const Index = () => {
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     loading="lazy"
+                    width="400"
+                    height="300"
                   />
                 </div>
                 <div className="p-6">
@@ -260,7 +266,7 @@ const Index = () => {
       {/* Order CTA Banner */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="w-full h-full object-cover" loading="lazy" aria-hidden="true" />
+          <img src={heroBg} alt="" className="w-full h-full object-cover" loading="lazy" aria-hidden="true" width="1920" height="1080" />
           <div className="absolute inset-0 bg-foreground/80" />
         </div>
         <div className="relative container text-center">
@@ -309,7 +315,12 @@ const Index = () => {
                 <button
                   key={i}
                   onClick={() => setCurrentVideo(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentVideo ? "bg-primary w-6" : "bg-muted-foreground/30"}`}
+                  className="w-2.5 h-2.5 rounded-full bg-primary"
+                  style={{
+                    transform: `scaleX(${i === currentVideo ? 2.4 : 1})`,
+                    opacity: i === currentVideo ? 1 : 0.3,
+                    transition: "transform 300ms ease, opacity 300ms ease",
+                  }}
                   aria-label={`Video ${i + 1}`}
                 />
               ))}

@@ -2,11 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { fileURLToPath } from "url";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   server: {
     host: "0.0.0.0",
     port: 5173,
@@ -14,18 +15,27 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    ViteImageOptimizer({
+      jpg: { quality: 80 },
+      jpeg: { quality: 80 },
+      png: { quality: 85 },
+    }),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
+    target: ["chrome90", "firefox90", "safari15", "edge90"],
+    assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ["react", "react-dom", "react-router-dom"],
-          ui: ["framer-motion", "@radix-ui/react-tooltip", "@radix-ui/react-toast"],
+          vendor: ["react", "react-dom", "react-router-dom"],motion: ["framer-motion"],
+          ui: ["@radix-ui/react-tooltip", "@radix-ui/react-toast"],
           query: ["@tanstack/react-query"],
         },
       },

@@ -32,7 +32,7 @@ const PrivacyPolicy = () => {
       {/* Hero with background image */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="w-full h-full object-cover" aria-hidden="true" />
+          <img src={heroBg} alt="" className="w-full h-full object-cover" aria-hidden="true" width="1920" height="1080" />
           <div className="absolute inset-0 bg-foreground/70" />
         </div>
         <motion.div

@@ -124,7 +124,7 @@ const Reviews = () => {
       {/* CTA */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="w-full h-full object-cover" loading="lazy" aria-hidden="true" />
+          <img src={heroBg} alt="" className="w-full h-full object-cover" loading="lazy" aria-hidden="true" width="1920" height="1080" />
           <div className="absolute inset-0 bg-foreground/80" />
         </div>
         <motion.div className="relative container text-center" {...fadeUp} transition={{ duration: 0.5 }}>

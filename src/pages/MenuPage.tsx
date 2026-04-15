@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { WhatsAppIcon, ChowdeckIcon } from "@/components/icons";
-import { Phone } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import jollofFish from "@/assets/jollof-fish.jpg";
 import jollofTurkey from "@/assets/jollof-turkey.jpg";
@@ -12,7 +11,6 @@ import breakfast from "@/assets/breakfast.jpg";
 import breakfast2 from "@/assets/breakfast2.jpg";
 import pasta from "@/assets/pasta.jpg";
 import spag from "@/assets/spag.jpg";
-import HeroSection from "@/components/HeroSection";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const CHOWDECK_URL = "https://store.chowdeck.com/alagomeji/restaurants/jollof-station";
@@ -148,12 +146,6 @@ const MenuItemRow = ({ item }: { item: MenuItem }) => (
   </div>
 );
 
-const CategorySection = ({ title, children, index }: { title: string; children: React.ReactNode; index: number }) => (
-  <motion.div {...fadeUp} transition={{ duration: 0.5, delay: index * 0.1 }}>
-    <h3 className="font-display text-2xl md:text-3xl text-primary mb-6">{title}</h3>
-    {children}
-  </motion.div>
-);
 
 const heroImages = [jollofFish, jollofTurkey, jollofBeef, breakfast, breakfast2, pasta, spag];
 
@@ -216,7 +208,12 @@ const MenuPage = () => {
             <button
               key={i}
               onClick={() => setCurrentImg(i)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentImg ? "bg-primary w-5" : "bg-primary-foreground/40"}`}
+              className="w-2 h-2 rounded-full bg-primary"
+              style={{
+                transform: `scaleX(${i === currentImg ? 2.5 : 1})`,
+                opacity: i === currentImg ? 1 : 0.4,
+                transition: "transform 300ms ease, opacity 300ms ease",
+              }}
               aria-label={`Image ${i + 1}`}
             />
           ))}
@@ -353,7 +350,7 @@ const MenuPage = () => {
       {/* Call to Order CTA */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="w-full h-full object-cover" loading="lazy" aria-hidden="true" />
+          <img src={heroBg} alt="" className="w-full h-full object-cover" loading="lazy" aria-hidden="true" width="1920" height="1080" />
           <div className="absolute inset-0 bg-foreground/80" />
         </div>
         <motion.div className="relative container text-center" {...fadeUp} transition={{ duration: 0.5 }}>
