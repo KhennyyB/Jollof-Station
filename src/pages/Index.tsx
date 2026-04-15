@@ -101,7 +101,7 @@ const Index = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
-            <img src={heroSlides[currentSlide]} alt="" className="w-full h-full object-cover" aria-hidden="true" loading="eager" decoding="async" />
+            <img src={heroSlides[currentSlide]} alt="" className="w-full h-full object-cover" aria-hidden="true" loading="eager" decoding="async" fetchPriority="high" />
             <div className="absolute inset-0 bg-foreground/60" />
           </motion.div>
         </AnimatePresence>
@@ -291,7 +291,7 @@ const Index = () => {
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
             </div>

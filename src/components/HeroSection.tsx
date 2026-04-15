@@ -18,6 +18,9 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle, children }: Hero
           alt=""
           className="w-full h-full object-cover"
           aria-hidden="true"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-foreground/60" />
       </div>
