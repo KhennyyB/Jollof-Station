@@ -104,13 +104,13 @@ const Reviews = () => {
             ))}
           </div>
 
-          <motion.div className="text-center mt-14" {...fadeUp} transition={{ duration: 0.5, delay: 0.3 }}>
+          {/* <motion.div className="text-center mt-14" {...fadeUp} transition={{ duration: 0.5, delay: 0.3 }}>
             <Button asChild variant="outline" size="lg" className="rounded-full gap-2 px-8 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200">
               <a href="https://google.com/maps" target="_blank" rel="noopener noreferrer">
                 See All Reviews on Google ⭐
               </a>
             </Button>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 
