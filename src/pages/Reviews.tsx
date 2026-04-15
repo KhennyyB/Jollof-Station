@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import { ChowdeckIcon, WhatsAppIcon } from "@/components/icons";
 import { motion } from "framer-motion";
+import { useSEO } from "@/hooks/useSEO";
 import HeroSection from "@/components/HeroSection";
 import reviewsHeroBg from "@/assets/reviews-hero-bg.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -21,12 +22,12 @@ const CHOWDECK_URL = "https://store.chowdeck.com/alagomeji/restaurants/jollof-st
 const avatarImages = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8];
 
 const reviews = [
-  { name: "Amaka O.", rating: 5, text: "The best Jollof I've ever had outside my grandmother's kitchen. Absolutely phenomenal!", date: "Feb 12, 2026" },
-  { name: "Tunde A.", rating: 5, text: "Fast delivery, perfectly seasoned, and that smoky flavor is unmatched. 10/10!", date: "Jan 28, 2026" },
+  { name: "Amaka O.", rating: 5, text: "The best Jollof I've ever had outside my mother's kitchen. Absolutely phenomenal!", date: "Feb 12, 2026" },
+  { name: "Tunde A.", rating: 5, text: "Fast delivery, perfectly seasoned, and that smokey flavor is unmatched. 10/10!", date: "Jan 28, 2026" },
   { name: "Blessing E.", rating: 4, text: "Really delicious! The portion size was generous. Will definitely be ordering again.", date: "Jan 15, 2026" },
-  { name: "Chidi N.", rating: 5, text: "JollofStation never disappoints. Their Suya platter is also amazing.", date: "Dec 20, 2025" },
+  { name: "Chidi N.", rating: 5, text: "JollofStation never disappoints. Their turkey platter is also amazing.", date: "Dec 20, 2025" },
   { name: "Fatima B.", rating: 4, text: "Great taste, lovely packaging. Delivery was a bit delayed but food was still hot.", date: "Dec 8, 2025" },
-  { name: "Kunle D.", rating: 5, text: "Ordered for a party — everyone was asking for the vendor. JollofStation is the real deal!", date: "Nov 30, 2025" },
+  { name: "Kunle D.", rating: 5, text: "Ordered for a party, everyone was asking for the vendor. JollofStation is the real deal!", date: "Nov 30, 2025" },
   { name: "Ngozi I.", rating: 5, text: "The Jollof & Grilled Chicken combo is heavenly. Worth every naira!", date: "Nov 18, 2025" },
   { name: "David M.", rating: 4, text: "Solid food, great service. Would love to see more side options in the future.", date: "Nov 5, 2025" },
 ];
@@ -48,6 +49,12 @@ const fadeUp = {
 };
 
 const Reviews = () => {
+  useSEO({
+    title: "Customer Reviews — Lagos Loves Our Jollof",
+    description: "See why Jollof Station is rated 4.8 stars by Lagos food lovers. Real reviews from customers who've tasted our smokey party jollof and more.",
+    canonical: "/reviews",
+  });
+
   return (
     <Layout>
       <HeroSection

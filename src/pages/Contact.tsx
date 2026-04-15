@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, Mail, Clock } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons";
 import { motion } from "framer-motion";
+import { useSEO } from "@/hooks/useSEO";
 import HeroSection from "@/components/HeroSection";
 import contactHeroBg from "@/assets/contact-hero-bg.jpg";
 
@@ -15,6 +16,12 @@ const fadeUp = {
 };
 
 const Contact = () => {
+  useSEO({
+    title: "Contact Us — Order, Catering & Enquiries",
+    description: "Reach Jollof Station by WhatsApp, phone, or email. Place bulk orders, book catering, or ask any question. We typically reply in under 5 minutes.",
+    canonical: "/contact",
+  });
+
   return (
     <Layout>
       <HeroSection

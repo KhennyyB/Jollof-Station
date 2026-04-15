@@ -5,6 +5,8 @@ import { Flame, Truck, Award } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { WhatsAppIcon, ChowdeckIcon } from "@/components/icons";
+import { useSEO } from "@/hooks/useSEO";
+import JsonLd from "@/components/JsonLd";
 import jollofFish from "@/assets/jollof-fish.jpg";
 import jollofTurkey from "@/assets/jollof-turkey.jpg";
 import jollofBeef from "@/assets/jollof-beef.jpg";
@@ -51,6 +53,12 @@ const fadeUp = {
 };
 
 const Index = () => {
+  useSEO({
+    title: "Authentic Nigerian Jollof Rice in Lagos — Order Now",
+    description: "Jollof Station serves Lagos's best smokey party jollof rice, breakfast, and pasta. Order via Chowdeck or WhatsApp. Fast delivery across Lagos.",
+    canonical: "/",
+  });
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentVideo, setCurrentVideo] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -90,6 +98,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <JsonLd />
       {/* Hero Carousel */}
       <section className="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
         <AnimatePresence mode="wait">

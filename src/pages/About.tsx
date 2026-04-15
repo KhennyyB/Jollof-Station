@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Quote } from "lucide-react";
 import { WhatsAppIcon, ChowdeckIcon } from "@/components/icons";
 import { motion } from "framer-motion";
+import { useSEO } from "@/hooks/useSEO";
 import HeroSection from "@/components/HeroSection";
 import aboutHeroBg from "@/assets/about-hero-bg.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -17,6 +18,12 @@ const fadeUp = {
 };
 
 const About = () => {
+  useSEO({
+    title: "Our Story — Chef Coco & the Heart Behind the Jollof",
+    description: "Since 2022, Jollof Station has been crafting authentic Nigerian party jollof in Lagos. Meet Chef Coco and learn the story behind every smokey, satisfying plate.",
+    canonical: "/about",
+  });
+
   return (
     <Layout>
       <HeroSection
@@ -34,10 +41,10 @@ const About = () => {
             <Quote className="absolute -top-4 -left-4 text-primary/15 w-16 h-16 -rotate-6" />
             <div className="space-y-6 text-muted-foreground text-lg leading-relaxed pl-6 border-l-4 border-primary/20 font-sans">
               <p>Jollof Station started because I genuinely care about how food tastes especially jollof. It has to be right, no excuses.</p>
-              <p>Our jollof is proper Nigerian party jollof - smoky, rich, and satisfying. I've added small twists here and there, but nothing that takes away from what it should be. It still tastes like home, just more consistent and intentional.</p>
+              <p>Our jollof is proper Nigerian party jollof - smokey, rich, and satisfying. I've added small twists here and there, but nothing that takes away from what it should be. It still tastes like home, just more consistent and intentional.</p>
               <p>I also try to be mindful of how people eat. Not everyone wants the same thing every time, so there are options depending on your preferences, whether you want something lighter or you're avoiding certain ingredients.</p>
               <p>Beyond jollof, we cover your everyday meals. Breakfast when you need something quick, proper lunches, soups and stews, and catering for events. Whether it's one plate or a full order, the standard doesn't change.</p>
-              <p>Over time, we have been able to create different twists to our jollof that have made us the best Jollof in Lagos. We are bringing you our different jollof options paired with your favourite assortments of proteins without missing the smoky party flavours that make up the authentic Naija party jollof taste.</p>
+              <p>Over time, we have been able to create different twists to our jollof that have made us the best Jollof in Lagos. We are bringing you our different jollof options paired with your favourite assortments of proteins without missing the smokey party flavours that make up the authentic Naija party jollof taste.</p>
               <p>Our brand focuses mainly on creating experiences with our meals. We are looking forward to creating a unique jollof experience for our customers.</p>
               <p className="text-foreground font-semibold">Since 2022.</p>
             </div>

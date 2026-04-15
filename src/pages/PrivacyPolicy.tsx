@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSEO } from "@/hooks/useSEO";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const fadeUp = {
@@ -20,6 +21,12 @@ const sections = [
 ];
 
 const PrivacyPolicy = () => {
+  useSEO({
+    title: "Privacy Policy",
+    description: "Learn how Jollof Station collects, uses, and protects your personal data in accordance with the Nigeria Data Protection Regulation (NDPR).",
+    canonical: "/privacy-policy",
+  });
+
   return (
     <Layout>
       {/* Hero with background image */}

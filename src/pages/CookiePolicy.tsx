@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { Cookie } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSEO } from "@/hooks/useSEO";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const fadeUp = {
@@ -10,6 +11,12 @@ const fadeUp = {
 };
 
 const CookiePolicy = () => {
+  useSEO({
+    title: "Cookie Policy",
+    description: "Understand how Jollof Station uses cookies to improve your browsing experience, analyse traffic, and serve relevant content.",
+    canonical: "/cookie-policy",
+  });
+
   return (
     <Layout>
       {/* Hero with background image */}

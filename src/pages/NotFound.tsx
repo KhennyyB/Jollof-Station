@@ -1,7 +1,14 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useSEO } from "@/hooks/useSEO";
 
 const NotFound = () => {
+  useSEO({
+    title: "Page Not Found",
+    description: "The page you're looking for doesn't exist. Head back to Jollof Station to browse our menu or place an order.",
+    noIndex: true,
+  });
+
   const location = useLocation();
 
   useEffect(() => {

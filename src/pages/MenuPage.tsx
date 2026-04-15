@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { WhatsAppIcon, ChowdeckIcon } from "@/components/icons";
 import { Phone } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 import jollofFish from "@/assets/jollof-fish.jpg";
 import jollofTurkey from "@/assets/jollof-turkey.jpg";
 import jollofBeef from "@/assets/jollof-beef.jpg";
@@ -33,7 +34,7 @@ const singlePlates = [
   { name: "Mini Meaty with Fish", desc: "Smokey Jollof with beef cuts in it, one piece of fish and plantain.", price: "₦8,000" },
   { name: "Maxi Meaty with Fish", desc: "Smokey Jollof with beef cuts in it, two pieces of fish and plantain.", price: "₦11,000" },
   { name: "Mini Meaty with Goat Meat", desc: "Smokey Jollof with beef cuts in it, two pieces of peppered goat meat and plantain.", price: "₦7,500" },
-  { name: "Maxi Meaty with Goat Meat", desc: "Smokey Jollofwith beef cuts in it, two pieces of peppered goat meat and plantain.", price: "₦11,000" },
+  { name: "Maxi Meaty with Goat Meat", desc: "Smokey Jollof with beef cuts in it, two pieces of peppered goat meat and plantain.", price: "₦11,000" },
   { name: "Turkey Penne Pasta", desc: "Penne pasta in spicy turkey sauce.", price: "₦11,500" },
   { name: "Chicken Alfredo Pasta", desc: "Penne pasta in creamy chicken and basil sauce.", price: "₦14,500" },
   { name: "Executive Pack", desc: "Meaty jollof, chicken fried rice, turkey or chicken and fish, plantain, moin-moin or coleslaw.", price: "₦15,000" },
@@ -157,6 +158,12 @@ const CategorySection = ({ title, children, index }: { title: string; children: 
 const heroImages = [jollofFish, jollofTurkey, jollofBeef, breakfast, breakfast2, pasta, spag];
 
 const MenuPage = () => {
+  useSEO({
+    title: "Menu & Prices — Jollof Rice, Breakfast, Pasta & More",
+    description: "Browse the full Jollof Station menu: smokey jollof rice, grilled proteins, fluffy pancakes, pasta, trays, and catering options. Prices from ₦6,000.",
+    canonical: "/menu",
+  });
+
   const [currentImg, setCurrentImg] = useState(0);
 
   useEffect(() => {
@@ -201,7 +208,7 @@ const MenuPage = () => {
             The Menu
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto leading-relaxed font-light">
-            From smoky jollof to fluffy pancakes — there's something for everyone.
+            From smokey jollof to fluffy pancakes — there's something for everyone.
           </p>
         </motion.div>
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
